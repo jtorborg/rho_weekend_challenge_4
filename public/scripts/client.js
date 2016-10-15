@@ -8,6 +8,7 @@ $(function() {
     getTask();
     //event listeners
     $('#taskForm').on('submit', addTask);
+    $('#taskContainer').on('click', '.deleteButton', deleteTask);
 
 
 
@@ -18,7 +19,7 @@ $(function() {
         console.log('inside addTask function');
         console.log("this", this);
         var taskData = $(this).serialize();
-console.log("task Data", taskData);
+        console.log("task Data", taskData);
         $.ajax({
             type: 'POST',
             url: "/route1",
@@ -56,7 +57,7 @@ console.log("task Data", taskData);
 
             $listOfTasks.append($li);
             var $updateButton = $('<button class = "updateButton">Update</button>');
-            console.log(task.id);
+            //console.log(task.id);
             $updateButton.data('id', task.id);
 
             //append to actual list itself
@@ -74,6 +75,26 @@ console.log("task Data", taskData);
 
 
     } //end of displayInfo function
+
+
+
+    function deleteTask(event) {
+      event.preventDefault();
+//console.log('inside deleteTask function');
+//console.log($(this)); !remember to use $!
+//
+var taskId = $(this).data('id');
+//
+//console.log(taskId);
+      //
+      $.ajax({
+         type: 'DELETE',
+         url: '/route1/' + taskId,
+         success: getTask
+       });
+    }
+
+
 
     //When the Task is created, it should be stored inside of a database (SQL)
     //on server side, add created task to database

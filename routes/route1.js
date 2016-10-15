@@ -64,13 +64,37 @@ console.log("req body", req.body);
 }); //end of router post
 
 
+router.delete('/:id', function(req, res){
+  var id = req.params.id;
+console.log("id", id);
+  pool.connect(function(err, client, done){
+    try {
+      if (err) {
+        console.log('Error connecting to DB', err);
+        res.sendStatus(500);
+        return;
+      }
 
+      client.query('DELETE FROM todo WHERE id=$1;', [id], function(err){
+        if (err) {
+          console.log('Error querying the DB', err);
+          res.sendStatus(500);
+          return;
+        }
+
+        res.sendStatus(204);////!!!@@@send back to AJAX success
+      });
+    } finally {
+      done();
+    }
+  });
+});
 
 
 //~~~~~~~~~~~~~~~~~~~~~
 
 
-console.log('insider route1');
+//console.log('insider route1');
 
 
 
