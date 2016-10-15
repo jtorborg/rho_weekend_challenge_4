@@ -10,6 +10,10 @@ $(function() {
     $('#taskForm').on('submit', addTask);
     $('#taskContainer').on('click', '.deleteButton', deleteTask);
 
+    $('#taskContainer').on('click', '.updateButton', updateTask);
+    //if(complete = true) {
+
+
 
 
     //Create a front end experience that allows a user to create a Task.
@@ -31,6 +35,21 @@ $(function() {
 
     }
 
+
+    function addClass(response) {
+
+        console.log('inside addClass function');
+        console.log("response", response);
+        console.log("response [0]", response[0].complete);
+        var status = response[0].complete;
+        console.log("Status", status);
+        console.log($(this));
+        if (status == true) {
+console.log('figure out how to .addClass');
+
+        }
+
+    } //end addClass
 
     function getTask() {
 
@@ -56,7 +75,7 @@ $(function() {
             $li.append($form);
 
             $listOfTasks.append($li);
-            var $updateButton = $('<button class = "updateButton">Update</button>');
+            var $updateButton = $('<button class = "updateButton">Complete</button>');
             //console.log(task.id);
             $updateButton.data('id', task.id);
 
@@ -74,46 +93,58 @@ $(function() {
         }); //end of forEach
 
 
+
+
     } //end of displayInfo function
 
 
 
     function deleteTask(event) {
-      event.preventDefault();
-//console.log('inside deleteTask function');
-//console.log($(this)); !remember to use $!
-//
-var taskId = $(this).data('id');
-//
-//console.log(taskId);
-      //
-      $.ajax({
-         type: 'DELETE',
-         url: '/route1/' + taskId,
-         success: getTask
-       });
+        event.preventDefault();
+        //console.log('inside deleteTask function');
+        //console.log($(this)); !remember to use $!
+        //
+        var taskId = $(this).data('id');
+        //
+        //console.log(taskId);
+        //
+        $.ajax({
+            type: 'DELETE',
+            url: '/route1/' + taskId,
+            success: getTask
+        });
     }
 
 
 
-    //When the Task is created, it should be stored inside of a database (SQL)
-    //on server side, add created task to database
+    function updateTask(event) {
+        event.preventDefault();
+        //console.log('inside updateTask function');
+        //console.log($(this)); !remember to use $!
+        //
+        var taskId = $(this).data('id');
+        var formInputString = $(this).closest('form');
+        var formData = $(formInputString).serialize();
 
-    //Whenever a Task is created the front end should refresh to show all tasks that need to be completed.
+        // //
+        console.log(taskId);
+        //       //
+        $.ajax({
+            type: 'PUT',
+            url: '/route1/' + taskId,
+            data: formData,
+            success: addClass
+        });
+    } //end update Task function
 
 
-    //Each Task should have an option to 'Complete' or 'Delete'.
-    //append complete or delete buttons to created task
 
-    //When a Task is complete, its visual representation should change on the front end. For example, the background of the task container could change from gray to green. The complete option should be 'checked off'. Each of these are accomplished in CSS, but will need to hook into logic to know whether or not the task is complete.
+    //When a Task is complete, its visual representation should change on the front end.
+    //For example, the background of the task container could change from gray to green.
+    //The complete option should be 'checked off'. Each of these are accomplished in CSS, but will need to hook into logic to know whether or not the task is complete.
     //on click complete, remove class
-    //Whether or not a Task is complete should also be stored in the database.
 
-    //database should include column for status of complete or incomplete
 
-    //Deleting a Task should remove it both from the front end as well as the Database.
-
-    //delete should have query that removes from database
 
 
 

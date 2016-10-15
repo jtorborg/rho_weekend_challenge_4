@@ -88,7 +88,41 @@ console.log("id", id);
       done();
     }
   });
-});
+});//end of delete function
+
+
+router.put('/:id', function(req, res) {
+  var id = req.params.id;
+  var taskName = req.body.task_name;
+
+
+  pool.connect(function(err, client, done){
+    try {
+      if (err) {
+        console.log('Error connecting the DB', err);
+        res.sendStatus(500);
+        return;
+      }
+
+      client.query('UPDATE todo SET complete=true WHERE id=$1 RETURNING *;',
+      [id],
+
+      // client.query('UPDATE todo SET task_name=$1 WHERE id=$2 RETURNING *;',
+      // [taskName, id], this query didn't work
+      function(err, result) {
+        if (err) {
+          console.log('Error querying database', err);
+          res.sendStatus(500);
+        } else {
+          console.log('result rows', result.rows);
+          res.send(result.rows);//!!!@@@send back to client side
+        }
+      });
+    } finally {
+      done();
+    }
+  });
+});//end of put function
 
 
 //~~~~~~~~~~~~~~~~~~~~~
