@@ -1,5 +1,51 @@
 * {
+    background-color: #EFEFEF;
+    /*Neutral*/
+    color: #282f30;
+    /*swamp*/
+    font-family: 'Roboto', sans-serif;
 
-background-color: green;
+}
 
+h1 {
+    font-family: 'Alegreya', serif;
+    background-color: #CAEBF2;
+    text-align: center;
+    color: #282f30;
+    /*Sky*/
+}
+
+h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #A9A9A9;
+    color: #282f30;
+    /*Sky*/
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #282f30; /*swamp*/
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #282f30; /*swamp*/
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #282f30; /*swamp*/
+
+}
+
+#taskContainer {
+    background-color: #FF3B3F;
+}
+
+.completeTask {
+    background-color: #FF3B3F;
+    /*watermelon*/
 }
