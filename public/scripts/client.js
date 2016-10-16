@@ -65,34 +65,34 @@ $(function() {
         console.log("Response:", response);
         var $listOfTasks = $('#taskContainer');
         $listOfTasks.empty();
-        var $li = $('<li></li>');
-        var $form = $('<form></form>');
+        var $div = $('<div></div>');
+        var $form = $('<form id = "formContainer"></form>');
         response.forEach(function(task, index) {
 
 
             //////////////////
             if (task.complete != true) {
-                $form.append('<input type = "text" name = "task_name" value = "' + task.task_name + '"/>');
-                $li.append($form);
-                $listOfTasks.append($li);
+                $form.append('<input type = "text" size = "200" class = "taskInput" name = "task_name" value = "' + task.task_name + '"/>');
+                $div.append($form);
+                $listOfTasks.append($div);
                 var $updateButton = $('<button class = "updateButton">Complete</button>');
                 $updateButton.data('id', task.id);
                 $form.append($updateButton);
                 var $deleteButton = $('<button class = "deleteButton">Delete</button>');
                 $deleteButton.data('id', task.id);
                 $form.append($deleteButton);
-                $li.append($form);
-                $listOfTasks.append($li);
+                $div.append($form);
+                $listOfTasks.append($div);
             } else if (task.complete === true) {
-                $form.append('<input type = "text" name = "task_name" class = "completeTask" value = "' + task.task_name + '"/>');
-                $li.append($form);
-                $listOfTasks.append($li);
+                $form.append('<input type = "text" size = "200" name = "task_name" class = "completeTask" value = "' + task.task_name + '"/>');
+                $div.append($form);
+                $listOfTasks.append($div);
                 $form.append($updateButton);
                 var $deleteButton = $('<button class = "deleteButton">Delete</button>');
                 $deleteButton.data('id', task.id);
                 $form.append($deleteButton);
-                $li.append($form);
-                $listOfTasks.append($li);
+                $div.append($form);
+                $listOfTasks.append($div);
             } ////////////////////////////////////////////////////
 
 

@@ -8,17 +8,44 @@
 
 h1 {
     font-family: 'Alegreya', serif;
+    /*watermelon*/
     background-color: #CAEBF2;
     text-align: center;
     color: #282f30;
     /*Sky*/
+    margin-left: 150px;
+    margin-right: 150px;
 }
 
 h2 {
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: #A9A9A9;
+    background-color: #FF3B3F;
+    /*watermelon*/
+    /*background-color: #A9A9A9;*/
     color: #282f30;
     /*Sky*/
+    text-align: left;
+    margin-left: 275px;
+    margin-right: 275px;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+#taskList {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #FF3B3F;
+    /*watermelon*/
+    /*background-color: #A9A9A9;*/
+    color: #282f30;
+    /*Sky*/
+    text-align: left;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 p {
@@ -32,6 +59,8 @@ label {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: #282f30;
+    float: left;
+    margin-right: 10px;
     /*swamp*/
 }
 
@@ -46,13 +75,42 @@ li {
     list-style-type: none;
 }
 
+#divContainer {
+    background-color: #FF3B3F;
+    /*watermelon*/
+}
+
 #taskContainer {
     background-color: #FF3B3F;
+    /*watermelon*/
+}
+
+#formContainer {
+    /*background-color: #FF3B3F;*/
+    /*watermelon*/
+}
+
+label {
+    display: block;
+}
+
+#taskForm {
+    margin-left: 295px;
 }
 
 .completeTask {
-    background-color: #FF3B3F;
-    /*watermelon*/
+    background-color: #939797;
+    /*dark gray*/
+    color: #040404;
+    /*dark gray*/
     text-decoration: line-through;
     opacity: .5;
+    margin-left: 75px;
+
+
+}
+
+.taskInput {
+margin-left: 75px;
+
 }
