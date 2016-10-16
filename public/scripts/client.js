@@ -11,9 +11,6 @@ $(function() {
     $('#taskContainer').on('click', '.deleteButton', deleteTask);
 
     $('#taskContainer').on('click', '.updateButton', updateTask);
-    //if(complete = true) {
-
-
 
 
     //Create a front end experience that allows a user to create a Task.
@@ -36,20 +33,20 @@ $(function() {
     }
 
 
-    function addClass(response) {
-
-        console.log('inside addClass function');
-        console.log("response", response);
-        console.log("response [0]", response[0].complete);
-        var status = response[0].complete;
-        console.log("Status", status);
-        console.log($(this));
-        if (status == true) {
-console.log('figure out how to .addClass');
-
-        }
-
-    } //end addClass
+    //     function addClass(response) {
+    //
+    //         console.log('inside addClass function');
+    //         console.log("response", response);
+    //         console.log("response [0]", response[0].complete);
+    //         var status = response[0].complete;
+    //         console.log("Status", status);
+    //         console.log($(this));
+    //         if (status == true) {
+    // console.log('figure out how to .addClass');
+    //
+    //         }
+    //
+    //     } //end addClass
 
     function getTask() {
 
@@ -70,24 +67,37 @@ console.log('figure out how to .addClass');
         $listOfTasks.empty();
         var $li = $('<li></li>');
         var $form = $('<form></form>');
-        response.forEach(function(task) {
-            $form.append('<input type = "text" name = "task_name" value = "' + task.task_name + '"/>');
-            $li.append($form);
+        response.forEach(function(task, index) {
 
-            $listOfTasks.append($li);
-            var $updateButton = $('<button class = "updateButton">Complete</button>');
-            //console.log(task.id);
-            $updateButton.data('id', task.id);
 
-            //append to actual list itself
-            $form.append($updateButton);
+            //////////////////
+            if (task.complete != true) {
+                $form.append('<input type = "text" name = "task_name" value = "' + task.task_name + '"/>');
+                $li.append($form);
+                $listOfTasks.append($li);
+                var $updateButton = $('<button class = "updateButton">Complete</button>');
+                $updateButton.data('id', task.id);
+                $form.append($updateButton);
+                var $deleteButton = $('<button class = "deleteButton">Delete</button>');
+                $deleteButton.data('id', task.id);
+                $form.append($deleteButton);
+                $li.append($form);
+                $listOfTasks.append($li);
+            } else if (task.complete === true) {
+                $form.append('<input type = "text" name = "task_name" class = "completeTask" value = "' + task.task_name + '"/>');
+                $li.append($form);
+                $listOfTasks.append($li);
+                $form.append($updateButton);
+                var $deleteButton = $('<button class = "deleteButton">Delete</button>');
+                $deleteButton.data('id', task.id);
+                $form.append($deleteButton);
+                $li.append($form);
+                $listOfTasks.append($li);
+            } ////////////////////////////////////////////////////
 
-            var $deleteButton = $('<button class = "deleteButton">Delete</button>');
-            $deleteButton.data('id', task.id);
-            $form.append($deleteButton);
 
-            $li.append($form);
-            $listOfTasks.append($li);
+
+
 
 
         }); //end of forEach
@@ -133,7 +143,7 @@ console.log('figure out how to .addClass');
             type: 'PUT',
             url: '/route1/' + taskId,
             data: formData,
-            success: addClass
+            success: getTask
         });
     } //end update Task function
 

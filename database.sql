@@ -10,11 +10,9 @@ Deleting a Task should remove it both from the front end as well as the Database
 CREATE TABLE todo
 id SERIAL PRIMARY KEY
 task_name varchar(200),
-complete BOOLEAN,
-remove BOOLEAN
+complete BOOLEAN
 
 
 tasks.id
 tasks.task_name
 task.complete
-task.remove
