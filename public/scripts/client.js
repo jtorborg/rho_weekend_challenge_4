@@ -72,23 +72,23 @@ $(function() {
 
             //////////////////
             if (task.complete != true) {
-                $form.append('<input type = "text" size = "200" class = "taskInput" name = "task_name" value = "' + task.task_name + '"/>');
+                $form.append('<input type = "text" size = "125" class = "taskInput" name = "task_name" value = "' + task.task_name + '"/>');
                 $div.append($form);
                 $listOfTasks.append($div);
-                var $updateButton = $('<button class = "updateButton">Complete</button>');
+                var $updateButton = $('<button class = "updateButton btn btn-default">Complete</button>');
                 $updateButton.data('id', task.id);
                 $form.append($updateButton);
-                var $deleteButton = $('<button class = "deleteButton">Delete</button>');
+                var $deleteButton = $('<button class = "deleteButton btn btn-default">Delete</button>');
                 $deleteButton.data('id', task.id);
                 $form.append($deleteButton);
                 $div.append($form);
                 $listOfTasks.append($div);
             } else if (task.complete === true) {
-                $form.append('<input type = "text" size = "200" name = "task_name" class = "completeTask" value = "' + task.task_name + '"/>');
+                $form.append('<input type = "text" size = "125" name = "task_name" class = "completeTask" "btn btn-default" value = "' + task.task_name + '"/>');
                 $div.append($form);
                 $listOfTasks.append($div);
                 $form.append($updateButton);
-                var $deleteButton = $('<button class = "deleteButton">Delete</button>');
+                var $deleteButton = $('<button class = "deleteButton btn btn-default">Delete</button>');
                 $deleteButton.data('id', task.id);
                 $form.append($deleteButton);
                 $div.append($form);

@@ -20,7 +20,7 @@ router.get('/', function(req, res){
       return;
     }
 
-    client.query('SELECT * FROM todo ORDER BY complete DESC;', function(err, result){
+    client.query('SELECT * FROM todo ORDER BY complete ASC;', function(err, result){
       done();
       if (err) {
         console.log('Error querying the DB', err);
